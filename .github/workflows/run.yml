@@ -1,0 +1,40 @@
+name: Generate PornSite list and commit to main
+on:
+  schedule:
+    - cron: "0 22 * * *"
+
+jobs:
+  generate:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository (main)
+        uses: actions/checkout@v5
+        with:
+          ref: main
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.x'
+
+      - name: Generate PornSite list
+        run: |
+          python3 ./scripts/generate_pornsite.py
+        shell: bash
+
+      - name: Commit PornSite list to main (add or update)
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          # Ensure we have the file tracked if present
+          git add PornSite/PornSite.list || true
+          # If no staged changes, exit
+          if git diff --cached --quiet; then
+            echo "No changes to commit"
+            exit 0
+          fi
+          git commit -m "chore: update PornSite.list (generated)"
+          git push "https://${{ github.actor }}:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}" HEAD:main
+        shell: bash
