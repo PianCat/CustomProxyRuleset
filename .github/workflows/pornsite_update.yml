@@ -3,6 +3,9 @@ on:
   schedule:
     - cron: "0 22 * * *"
 
+permissions:
+  contents: write
+
 jobs:
   generate:
     runs-on: ubuntu-latest
@@ -36,5 +39,5 @@ jobs:
             exit 0
           fi
           git commit -m "chore: update PornSite.list (generated)"
-          git push "https://${{ github.actor }}:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}" HEAD:main
+          git push "https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}" HEAD:main
         shell: bash
