@@ -2,6 +2,7 @@ name: Generate PornSite list and commit to main
 on:
   schedule:
     - cron: "0 22 * * *"
+  workflow_dispatch:
 
 permissions:
   contents: write
