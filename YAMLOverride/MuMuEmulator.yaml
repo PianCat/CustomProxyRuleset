@@ -1,0 +1,3 @@
+## MuMu 升级与消息中心广告
++rules:
+  - DOMAIN-SUFFIX,mumu.nie.netease.com,REJECT
