@@ -1,6 +1,6 @@
 # Adobe 正版验证弹窗屏蔽
 +rules:
-  DOMAIN-REGEX,^[a-zA-Z0-9]{10,12}\.(adobe\.io|adobestats\.io|prod\.cloud\.adobe\.io)$,REJECT
-  DOMAIN-SUFFIX,prod.adobegenuine.com,REJECT
-  DOMAIN-SUFFIX,cc-api-data.adobe.io,REJECT
-  DOMAIN-SUFFIX,ic.adobe.io,REJECT
+  - DOMAIN-REGEX,^[a-zA-Z0-9]{10,12}\.(adobe\.io|adobestats\.io|prod\.cloud\.adobe\.io)$,REJECT
+  - DOMAIN-SUFFIX,prod.adobegenuine.com,REJECT
+  - DOMAIN-SUFFIX,cc-api-data.adobe.io,REJECT
+  - DOMAIN-SUFFIX,ic.adobe.io,REJECT
